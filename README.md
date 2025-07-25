@@ -4,7 +4,7 @@
 <p> 
 - Does the return of spectators in the 2021/22 season post-pandemic influence home team results?
 <br>
-- Do the Milan–Inter, Roma–Lazio, and Torino–Juventus derbies have more cards than the average?
+- Do the Milan–Inter, Roma–Lazio, and Torino–Juventus derbies attract more audience and are more balanced than the others?
 </p>
 
 <br>
