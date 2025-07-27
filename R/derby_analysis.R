@@ -53,18 +53,18 @@ bar_result <- ggplot(df, aes(x = Result, fill = Result)) +
 # 2. Scatter plot: xG vs xGA + correlation
 cor_xg <- cor(df$xG, df$xGA)
 scatter_xg <- ggplot(df, aes(x = xG, y = xGA)) +
-  geom_point(alpha = 0.6) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
   labs(title = paste("xG vs xGA (cor =", round(cor_xg, 2), ")"),
        x = "Expected Goals (xG)", y = "Expected Goals Against (xGA)") +
   theme_classic()
 
 # 3. Boxplot: Attendance by Result
 box_attendance <- ggplot(df, aes(x = Result, y = Attendance, fill = Result)) +
-  geom_boxplot() +
+  geom_boxplot(na.rm = TRUE) +
   labs(title = "Attendance by Match Result", x = "Result", y = "Attendance") +
   theme_classic()
 
-# Save required plots
+# Save plots
 ggsave("figs/Question2/bar_result.png", bar_result, width = 6, height = 5)
 ggsave("figs/Question2/scatter_xg.png", scatter_xg, width = 6, height = 5)
 ggsave("figs/Question2/box_attendance_by_result.png", box_attendance, width = 6, height = 5)
@@ -94,8 +94,8 @@ df <- df %>%
 df <- df %>%
   mutate(
     poss_balance = abs(Poss - 50),   # distance from 50% possession
-    expected_goals_diff      = abs(xG - xGA),    # difference in expected goals
-    is_draw      = (Result == "D")   # TRUE if match ended in a draw
+    expected_goals_diff = abs(xG - xGA),    # difference in expected goals
+    is_draw = (Result == "D")   # TRUE if match ended in a draw
 )
 
 # Calculate overall, derby, and non-derby statistics
@@ -142,7 +142,7 @@ cat("Non-Derby statistics \n");  print(non_derby_stats)
 
 # Build a small summary tibble for plotting
 draw_df <- tibble(
-  group      = c("Non-Derby", "Derby"),
+  group = c("Non-Derby", "Derby"),
   draw_ratio = c(non_derby_stats$draw_ratio, derby_stats$draw_ratio) * 100
 )
 
@@ -154,19 +154,19 @@ attendance_plot <- ggplot(df, aes(x = is_derby, y = Attendance, fill = is_derby)
 
 # Possession balance
 poss_plot <- ggplot(df, aes(x = is_derby, y = poss_balance, fill = is_derby)) +
-  geom_boxplot(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE, na.rm = TRUE) +
   scale_x_discrete(labels = c("No", "Yes")) +
   labs(x = "Derby match?", y = "|Poss − 50|", title = "Possession Imbalance")
 
 # expected goals difference
 xg_plot <- ggplot(df, aes(x = is_derby, y = expected_goals_diff, fill = is_derby)) +
-  geom_boxplot(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE, na.rm = TRUE) +
   scale_x_discrete(labels = c("No", "Yes")) +
   labs(x = "Derby match?", y = "|xG − xGA|", title = "Expected Goals Difference")
 
 # Create the bar chart
 draw_plot <- ggplot(draw_df, aes(x = group, y = draw_ratio, fill = group)) +
-  geom_col(show.legend = FALSE) +
+  geom_col(show.legend = FALSE, na.rm = TRUE) +
   geom_text(aes(label = sprintf("%.1f%%", draw_ratio)), 
             vjust = -0.5) +
   labs(
@@ -176,7 +176,7 @@ draw_plot <- ggplot(draw_df, aes(x = group, y = draw_ratio, fill = group)) +
   ) +
   ylim(0, max(draw_df$draw_ratio) + 5)
 
-# Save plots to figs/
+# Save plots to figs/Question2
 ggsave("figs/Question2/attendance_boxplot.png", attendance_plot, width = 8, height = 5)
 ggsave("figs/Question2/poss_balance_boxplot.png", poss_plot,      width = 8, height = 5)
 ggsave("figs/Question2/expected_goals_diff_boxplot.png",       xg_plot,      width = 8, height = 5)
