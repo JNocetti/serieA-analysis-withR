@@ -148,7 +148,7 @@ draw_df <- tibble(
 
 # Attendance
 attendance_plot <- ggplot(df, aes(x = is_derby, y = Attendance, fill = is_derby)) +
-  geom_boxplot(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE, na.rm = TRUE) +
   scale_x_discrete(labels = c("No", "Yes")) +
   labs(x = "Derby match?", y = "Attendance", title = "Attendance: Derby vs Non-Derby")
 
