@@ -65,9 +65,9 @@ box_attendance <- ggplot(df, aes(x = Result, y = Attendance, fill = Result)) +
   theme_classic()
 
 # Save required plots
-ggsave("figs/bar_result.png", bar_result, width = 6, height = 5)
-ggsave("figs/scatter_xg.png", scatter_xg, width = 6, height = 5)
-ggsave("figs/box_attendance_by_result.png", box_attendance, width = 6, height = 5)
+ggsave("figs/Question2/bar_result.png", bar_result, width = 6, height = 5)
+ggsave("figs/Question2/scatter_xg.png", scatter_xg, width = 6, height = 5)
+ggsave("figs/Question2/box_attendance_by_result.png", box_attendance, width = 6, height = 5)
 
 
 ################
@@ -177,7 +177,7 @@ draw_plot <- ggplot(draw_df, aes(x = group, y = draw_ratio, fill = group)) +
   ylim(0, max(draw_df$draw_ratio) + 5)
 
 # Save plots to figs/
-ggsave("figs/attendance_boxplot.png", attendance_plot, width = 8, height = 5)
-ggsave("figs/poss_balance_boxplot.png", poss_plot,      width = 8, height = 5)
-ggsave("figs/expected_goals_diff_boxplot.png",       xg_plot,      width = 8, height = 5)
-ggsave("figs/draw_ratio_comparison.png", draw_plot, width = 6, height = 5)
+ggsave("figs/Question2/attendance_boxplot.png", attendance_plot, width = 8, height = 5)
+ggsave("figs/Question2/poss_balance_boxplot.png", poss_plot,      width = 8, height = 5)
+ggsave("figs/Question2/expected_goals_diff_boxplot.png",       xg_plot,      width = 8, height = 5)
+ggsave("figs/Question2/draw_ratio_comparison.png", draw_plot, width = 6, height = 5)
