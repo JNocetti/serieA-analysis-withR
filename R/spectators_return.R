@@ -93,7 +93,7 @@ season_performance <- df_cleaned %>%
   )
 print(season_performance)
 
-correlation_value <- cor(season_performance$avg_attendance, season_performance$win_rate)
+corr_value <- cor(season_performance$avg_attendance, season_performance$win_rate)
 print(paste("Correlation Pearson:", round(corr_value, 3)))
 
 # Scatterplot: 
